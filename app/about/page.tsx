@@ -1,9 +1,20 @@
-import { title } from "@/components/primitives";
+import { title } from '@/components/primitives';
+import { getSession } from '@/utils/GetSession';
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const session = await getSession();
+
+  console.log('_________session', session);
+
   return (
     <div>
       <h1 className={title()}>About</h1>
+      <p>Session object from server:</p>
+      <ul>
+        <li>name: {session?.user?.name}</li>
+        <li>email: {session?.user?.email}</li>
+        <li>image: {session?.user?.image}</li>
+      </ul>
     </div>
   );
 }
