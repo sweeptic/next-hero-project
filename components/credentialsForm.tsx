@@ -1,9 +1,11 @@
+'use client';
+
 import { useState } from 'react';
 import { title } from './primitives';
 import { Form, Button, Input } from '@heroui/react';
 import { EyeSlashFilledIcon } from '@/icons/EyeSlashFilledIcon';
 import { EyeFilledIcon } from '@/icons/EyeFilledIcon';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 
 export default function CredentialForm() {
   const [isSignUp, setAuthMethod] = useState(false);
@@ -14,13 +16,6 @@ export default function CredentialForm() {
     email: '',
     password: '',
   });
-
-  const [alert, setAlert] = useState({
-    status: '',
-    message: '',
-  });
-
-  const { data: session } = useSession();
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -37,20 +32,18 @@ export default function CredentialForm() {
           method: 'POST',
           body: JSON.stringify(formData),
         });
-        setAlert({ status: 'success', message: 'Signup successfully' });
+
         setFormData({ name: '', email: '', password: '' });
       } catch (error: any) {
         console.log({ error });
-        setAlert({ status: 'error', message: 'Something went wrong' });
       }
     } else {
       try {
         await signIn('credentials', formData);
-        setAlert({ status: 'success', message: 'Login successfully' });
+
         setFormData({ email: '', password: '', name: '' });
       } catch (error: any) {
         console.log({ error });
-        setAlert({ status: 'error', message: 'Something went wrong' });
       }
     }
   };
@@ -58,27 +51,8 @@ export default function CredentialForm() {
   return (
     <div>
       <h1 className={title()}>Credentials</h1>
-      {alert.message && (
-        <div
-          style={{
-            color: alert.status === 'success' ? 'green' : 'red',
-            fontWeight: 'bold',
-          }}
-        >
-          {alert.status === 'success' ? '✅' : '❌'} {alert.message}
-        </div>
-      )}
-      <Form
-        onSubmit={onSubmit}
-        className="w-full max-w-xs flex flex-col gap-4 pt-4"
-        // onReset={() => setAction('reset')}
-        // onSubmit={(e) => {
-        //   e.preventDefault();
-        //   let data = Object.fromEntries(new FormData(e.currentTarget));
 
-        //   setAction(`submit ${JSON.stringify(data)}`);
-        // }}
-      >
+      <Form onSubmit={onSubmit} className="w-full max-w-xs flex flex-col gap-4 pt-4">
         {isSignUp && (
           <Input
             isRequired
@@ -138,11 +112,6 @@ export default function CredentialForm() {
             Reset
           </Button>
         </div>
-        {/* {action && (
-          <div className="text-small text-default-500">
-            Action: <code>{action}</code>
-          </div>
-        )} */}
       </Form>
       <div className="pt-4">
         <Button onPress={() => setAuthMethod((val) => !val)}>{`Switch to ${isSignUp ? 'Login' : 'Sign Up'}`}</Button>
