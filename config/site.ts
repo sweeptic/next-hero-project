@@ -9,8 +9,8 @@ export const siteConfig = {
       href: '/',
     },
     {
-      label: 'Discuss',
-      href: '/discuss',
+      label: 'Auth',
+      href: '/auth',
     },
 
     {
