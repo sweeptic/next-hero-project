@@ -2,7 +2,6 @@
 
 import { AuthGoogleButton } from '@/components/authButton';
 import CredentialForm from '@/components/credentialsForm';
-import SignOutForm from '@/components/forms/sign-out-form';
 import { title } from '@/components/primitives';
 
 import { Button } from '@heroui/button';
@@ -24,8 +23,7 @@ export default function AuthPage() {
       </div>
       {session && (
         <div className="pt-4">
-          <Button onPress={() => signOut()}>Sign out</Button>
-          <SignOutForm />
+          <Button onPress={() => signOut()}>Sign out (client side)</Button>
         </div>
       )}
     </div>
