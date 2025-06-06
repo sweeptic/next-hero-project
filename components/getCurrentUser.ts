@@ -1,5 +1,5 @@
 import { db } from '@/db';
-import { authOptions } from '@/utils/GetSession';
+import { authOptions } from '@/utils/auth';
 import { getServerSession } from 'next-auth';
 
 export const getCurrentUser = async () => {

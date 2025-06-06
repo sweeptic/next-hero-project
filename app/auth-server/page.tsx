@@ -1,6 +1,6 @@
-import { Button } from '@heroui/button';
-import * as actions from '@/actions';
-import { auth } from '@/utils/GetSession';
+import { auth } from '@/utils/auth';
+import SignOutForm from '@/components/forms/sign-out-form';
+import SignInGoogleForm from '@/components/forms/sign-in-form';
 
 export default async function AuthPage() {
   const session: any = await auth();
@@ -10,30 +10,18 @@ export default async function AuthPage() {
   return (
     <div>
       {isSignedIn ? (
-        <ul className="bg-green-200">
-          <li>{session?.user?.name}</li>
-          <li>{session?.user?.email}</li>
-          <li>{session?.expires}</li>
-        </ul>
+        <div className="border-4 p-2 rounded-lg">
+          <ul>
+            <li>{session?.user?.name}</li>
+            <li>{session?.user?.email}</li>
+            <li>{session?.expires}</li>
+          </ul>
+        </div>
       ) : (
         'Signed Out'
       )}
       <div />
-      <div className="flex flex-col gap-4 pt-3">
-        <form action={actions.signInGoogle}>
-          <Button type="submit" color="secondary" variant="bordered">
-            Google Sign In
-          </Button>
-        </form>
-
-        {isSignedIn ? (
-          <form action={actions.signOutServer}>
-            <Button type="submit" color="secondary" variant="bordered">
-              Sign Out
-            </Button>
-          </form>
-        ) : null}
-      </div>
+      <div className="flex flex-col gap-4 pt-3">{isSignedIn ? <SignOutForm /> : <SignInGoogleForm />}</div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { title } from '@/components/primitives';
-import { auth } from '@/utils/GetSession';
+import { auth } from '@/utils/auth';
 
 export default async function AboutPage() {
   const session = await auth();

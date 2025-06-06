@@ -6,8 +6,14 @@ import clsx from 'clsx';
 import { siteConfig } from '@/config/site';
 import { ThemeSwitch } from '@/components/theme-switch';
 import { Logo } from '@/components/icons';
+import { auth } from '@/utils/auth';
+import SignOutForm from './forms/sign-out-form';
+import SignInGoogleForm from './forms/sign-in-form';
 
-export const Navbar = () => {
+export const Navbar = async () => {
+  const session: any = await auth();
+
+  const isSignedIn = !!session;
   //   const searchInput = (
   //     <Input
   //       aria-label="Search"
@@ -55,6 +61,14 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
+        <NavbarItem>
+          {isSignedIn ? (
+            <p>
+              signed in as <strong>{session.user.name}</strong>
+            </p>
+          ) : null}
+        </NavbarItem>
+        <NavbarItem>{isSignedIn ? <SignOutForm /> : <SignInGoogleForm />}</NavbarItem>
         <NavbarItem className="hidden sm:flex gap-2">
           {/* <Link isExternal aria-label="Twitter" href={siteConfig.links.twitter}>
             <TwitterIcon className="text-default-500" />
