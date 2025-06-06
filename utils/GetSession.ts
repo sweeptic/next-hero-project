@@ -1,4 +1,4 @@
-import { NextAuthOptions, getServerSession } from 'next-auth';
+import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@auth/prisma-adapter';
@@ -6,7 +6,7 @@ import { db } from '@/db';
 
 const prisma = db;
 
-const authOptions: NextAuthOptions = {
+const authOptions: any = {
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
@@ -53,6 +53,8 @@ const authOptions: NextAuthOptions = {
  * Helper function to get the session on the server without having to import the authOptions object every single time
  * @returns The session object or null
  */
-const getSession = () => getServerSession(authOptions);
+// const getSession = () => getServerSession(authOptions);
 
-export { authOptions, getSession };
+// export { authOptions, getSession };
+
+export const { auth, signOut, signIn, handlers } = NextAuth(authOptions);

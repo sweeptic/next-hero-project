@@ -3,6 +3,7 @@
 import { AuthGoogleButton } from '@/components/authButton';
 import CredentialForm from '@/components/credentialsForm';
 import { title } from '@/components/primitives';
+
 import { Button } from '@heroui/button';
 import { signOut, useSession } from 'next-auth/react';
 

@@ -8,7 +8,8 @@ import { Providers } from './providers';
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
 import { Navbar } from '@/components/navbar';
-import { getSession } from '@/utils/GetSession';
+import { auth } from '@/utils/GetSession';
+
 
 export const metadata: Metadata = {
   title: {
@@ -29,7 +30,7 @@ export const viewport: Viewport = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const session = await getSession();
+  const session = await auth();
 
   return (
     <html suppressHydrationWarning lang="en">

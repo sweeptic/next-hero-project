@@ -1,9 +1,7 @@
 'use server';
 
+import { signIn } from '@/utils/GetSession';
 
-// import * as auth from '@/auth';
-
-export async function signIn() {
-    // return auth.signIn('github');
-    // return authOptions.
+export async function signInGoogle() {
+  return signIn('google');
 }

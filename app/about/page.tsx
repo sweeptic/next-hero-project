@@ -1,8 +1,8 @@
 import { title } from '@/components/primitives';
-import { getSession } from '@/utils/GetSession';
+import { auth } from '@/utils/GetSession';
 
 export default async function AboutPage() {
-  const session = await getSession();
+  const session = await auth();
 
   console.log('_________session', session);
 
