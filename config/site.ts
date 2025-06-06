@@ -12,6 +12,10 @@ export const siteConfig = {
       label: 'Auth',
       href: '/auth',
     },
+    {
+      label: 'Auth-server',
+      href: '/auth-server',
+    },
 
     {
       label: 'About',
