@@ -9,7 +9,7 @@ import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
 const createTopicSchema = z.object({
-  name: z
+  username: z
     .string()
     .min(3)
     .regex(/[a-z-]/, {
@@ -20,15 +20,17 @@ const createTopicSchema = z.object({
 
 interface CreateTopicFormState {
   errors: {
-    name?: string[];
+    username?: string[];
     description?: string[];
     _form?: string[];
   };
 }
 
 export async function createTopic(formState: CreateTopicFormState, formData: FormData): Promise<CreateTopicFormState> {
+  console.log('createTopic runs');
+
   const result = createTopicSchema.safeParse({
-    name: formData.get('name'),
+    username: formData.get('username'),
     description: formData.get('description'),
   });
 
@@ -55,7 +57,7 @@ export async function createTopic(formState: CreateTopicFormState, formData: For
     // throw new Error('failed.');
     topic = await db.topic.create({
       data: {
-        slug: result.data.name,
+        slug: result.data.username,
         description: result.data.description,
       },
     });

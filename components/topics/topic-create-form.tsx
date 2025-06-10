@@ -18,12 +18,12 @@ export default function TopicCreateForm() {
           <div className="flex flex-col gap-4 p-4 w-80 ">
             <h3 className="text-lg">Create Topic</h3>
             <Input
-              name="name"
+              name="username"
               label="Name"
               labelPlacement="outside"
               placeholder="Name"
-              isInvalid={!!formState.errors.name}
-              errorMessage={formState.errors.name?.join(', ')}
+              isInvalid={!!formState.errors.username}
+              errorMessage={formState.errors.username?.join(', ')}
             />
             <Textarea
               name="description"
@@ -33,6 +33,9 @@ export default function TopicCreateForm() {
               isInvalid={!!formState.errors.description}
               errorMessage={formState.errors.description?.join(', ')}
             />
+            {formState.errors._form ? (
+              <div className="rounded p-2 bg-red-200 border border-red-400">{formState.errors._form?.join(', ')}</div>
+            ) : null}
             <Button type="submit">Submit</Button>
           </div>
         </form>
