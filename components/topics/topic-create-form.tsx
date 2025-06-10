@@ -5,7 +5,7 @@ import { Button, Input, Popover, PopoverContent, PopoverTrigger, Textarea } from
 import { useFormState } from 'react-dom';
 
 export default function TopicCreateForm() {
-  const [formState, action] = useFormState(actions.createTopic, 5);
+    const [formState, action] = useFormState(actions.createTopic, { errors: {} });
 
   return (
     <Popover>
