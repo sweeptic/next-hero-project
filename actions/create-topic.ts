@@ -2,7 +2,6 @@
 
 import { db } from '@/db';
 import { paths } from '@/paths';
-import { auth } from '@/utils/auth';
 import { Topic } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
@@ -27,7 +26,11 @@ interface CreateTopicFormState {
 }
 
 export async function createTopic(formState: CreateTopicFormState, formData: FormData): Promise<CreateTopicFormState> {
-  console.log('createTopic runs');
+  console.log('stop...');
+  await new Promise((resolve, rejected) => setTimeout(resolve, 2000));
+  //
+  //   await new Promise((resolve, rejected) => setTimeout(() => resolve, 2000));
+  console.log('run');
 
   const result = createTopicSchema.safeParse({
     username: formData.get('username'),
@@ -41,20 +44,23 @@ export async function createTopic(formState: CreateTopicFormState, formData: For
     };
   }
 
-  const session = await auth();
+  //   const session = await auth();
 
-  if (!session || !session.user) {
-    return {
-      errors: {
-        _form: ['You must be signed in to do this.'],
-      },
-    };
-  }
+  //   if (!session || !session.user) {
+  //     return {
+  //       errors: {
+  //         _form: ['You must be signed in to do this.'],
+  //       },
+  //     };
+  //   }
 
   let topic: Topic;
 
   try {
     // throw new Error('failed.');
+
+    console.log('CREATE DATA');
+
     topic = await db.topic.create({
       data: {
         slug: result.data.username,
