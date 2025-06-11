@@ -8,7 +8,6 @@ export default function ChipList({ topics }: any) {
   const list = topics.map((topic: any) => {
     return (
       <div key={topic.id}>
-        Add comment More actions
         <Link href={paths.topicShow(topic.slug)}>
           <Chip color="warning" variant="shadow">
             {topic.slug}
