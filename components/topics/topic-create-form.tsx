@@ -3,7 +3,7 @@
 import * as actions from '@/actions';
 import { Button, Input, Popover, PopoverContent, PopoverTrigger, Textarea } from '@heroui/react';
 import { useActionState, useEffect, useState } from 'react';
-import ButtonElement from '../button';
+import FormButton from '../button';
 
 export default function TopicCreateForm() {
   const [formState, action, isPending] = useActionState(actions.createTopic, { errors: {} });
@@ -59,7 +59,7 @@ export default function TopicCreateForm() {
             {formState.errors._form ? (
               <div className="rounded p-2 bg-red-200 border border-red-400">{formState.errors._form?.join(', ')}</div>
             ) : null}
-            <ButtonElement isPending={isPending}>Submit</ButtonElement>
+            <FormButton isPending={isPending}>Submit</FormButton>
           </div>
         </form>
       </PopoverContent>
