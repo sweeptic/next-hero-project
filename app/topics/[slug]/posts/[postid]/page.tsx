@@ -1,15 +1,13 @@
 import CommentCreateForm from '@/components/comments/comment-create-form';
 import CommentList from '@/components/comments/comment-list';
 import PostShow from '@/components/posts/post-show';
-import { fetchCommentsByPostId } from '@/db/queries/comments';
 import { paths } from '@/paths';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 export default async function PostShowPage({ params }: any) {
   const { slug, postId } = await params;
   console.log('PostShowPage', slug, postId);
-
-  const comments = fetchCommentsByPostId;
 
   return (
     <div className="space-y-3">
@@ -17,7 +15,9 @@ export default async function PostShowPage({ params }: any) {
         {'< '}Back to {slug}
       </Link>
 
-      <PostShow postId={postId} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <PostShow postId={postId} />
+      </Suspense>
 
       <CommentCreateForm postId={postId} startOpen />
 
