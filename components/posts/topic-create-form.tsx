@@ -11,7 +11,7 @@ export default function PostCreateForm() {
   return (
     <Popover placement="left">
       <PopoverTrigger>
-        <Button color="primary">Create a Topic</Button>
+        <Button color="primary">Create a Post</Button>
       </PopoverTrigger>
 
       <PopoverContent>
@@ -22,6 +22,10 @@ export default function PostCreateForm() {
             <Input name="title" label="Title" labelPlacement="outside" placeholder="Title" />
 
             <Input name="content" label="Content" labelPlacement="outside" placeholder="Content" />
+
+            {formState.errors._form ? (
+              <div className="rounded p-2 bg-red-200 border border-red-400">{formState.errors._form?.join(', ')}</div>
+            ) : null}
             <FormButton isPending={pending}>Create Post</FormButton>
           </div>
         </form>

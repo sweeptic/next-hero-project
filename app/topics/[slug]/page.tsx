@@ -1,4 +1,4 @@
-import PostCreateForm from '@/components/posts/post-create-form';
+import PostCreateForm from '@/components/posts/topic-create-form';
 
 export default async function TopicShowPage({ params }: any) {
   const { slug } = await params;
