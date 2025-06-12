@@ -29,7 +29,7 @@ export async function createTopic(formState: CreateTopicFormState, formData: For
   console.log('stop...');
   await new Promise((resolve, rejected) => setTimeout(resolve, 2000));
   //
-  //   await new Promise((resolve, rejected) => setTimeout(() => resolve, 2000));
+  await new Promise((resolve, rejected) => setTimeout(() => resolve, 1000));
   console.log('run');
 
   const result = createTopicSchema.safeParse({
