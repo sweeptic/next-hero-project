@@ -1,5 +1,6 @@
+'use client';
+
 import { Button } from '@heroui/button';
-import { useFormStatus } from 'react-dom';
 
 interface FormButtonProps {
   children: React.ReactNode;
@@ -7,12 +8,12 @@ interface FormButtonProps {
 }
 
 export default function FormButton({ children, isPending }: FormButtonProps) {
-  const { pending } = useFormStatus();
+  //   const { pending } = useFormStatus();
 
-  console.log('pending', pending);
+  console.log('pending', isPending);
 
   return (
-    <Button isLoading={isPending || false} type="submit">
+    <Button isLoading={isPending} type="submit">
       {children}
     </Button>
   );

@@ -1,7 +1,7 @@
 import PostCreateForm from '@/components/posts/post-create-form';
 
-export default function TopicShowPage({ params }: any) {
-  const { slug } = params;
+export default async function TopicShowPage({ params }: any) {
+  const { slug } = await params;
 
   return (
     <div className="grid grid-cols-4 gap-4 p-4 bg-green-100">

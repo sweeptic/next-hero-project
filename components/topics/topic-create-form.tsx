@@ -3,7 +3,7 @@
 import * as actions from '@/actions';
 import { Button, Input, Popover, PopoverContent, PopoverTrigger, Textarea } from '@heroui/react';
 import { useActionState, useEffect, useState } from 'react';
-import FormButton from '../button';
+import FormButton from '../form-button';
 
 export default function TopicCreateForm() {
   const [formState, action, isPending] = useActionState(actions.createTopic, { errors: {} });
