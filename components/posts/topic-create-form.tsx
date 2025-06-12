@@ -5,8 +5,8 @@ import { Button, Input, Popover, PopoverContent, PopoverTrigger } from '@heroui/
 import { useActionState } from 'react';
 import FormButton from '../form-button';
 
-export default function PostCreateForm() {
-  const [formState, action, pending] = useActionState(actions.createPost, { errors: {} } as any);
+export default function PostCreateForm({ slug }) {
+  const [formState, action, pending] = useActionState(actions.createPost.bind(null, slug), { errors: {} } as any);
 
   return (
     <Popover placement="left">
