@@ -1,7 +1,6 @@
 'use client';
 
-import { useFormState } from 'react-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useActionState, useEffect, useRef, useState } from 'react';
 
 import * as actions from '@/actions';
 import { Textarea } from '@heroui/input';
@@ -17,7 +16,7 @@ interface CommentCreateFormProps {
 export default function CommentCreateForm({ postId, parentId, startOpen }: CommentCreateFormProps) {
   const [open, setOpen] = useState(startOpen);
   const ref = useRef<HTMLFormElement | null>(null);
-  const [formState, action] = useFormState(actions.createComment.bind(null, { postId, parentId }), { errors: {} });
+  const [formState, action] = useActionState(actions.createComment.bind(null, { postId, parentId }), { errors: {} });
 
   useEffect(() => {
     if (formState.success) {
