@@ -1,8 +1,11 @@
+import PostShow from '@/components/posts/post-show';
 import { paths } from '@/paths';
 import Link from 'next/link';
 
 export default async function PostShowPage({ params }: any) {
-  const { slug, postId } = await params;
+    const { slug, postId } = await params;
+    console.log('PostShowPage', slug, postId);
+    
 
   return (
     <div className="space-y-3">
@@ -10,7 +13,7 @@ export default async function PostShowPage({ params }: any) {
         {'< '}Back to {slug}
       </Link>
 
-      {/* <PostShow /> */}
+      <PostShow postId={postId} />
 
       {/* <CommentCreateForm postId={postId} startOpen /> */}
 
