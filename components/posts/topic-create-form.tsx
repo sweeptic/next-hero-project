@@ -5,7 +5,7 @@ import { Button, Input, Popover, PopoverContent, PopoverTrigger } from '@heroui/
 import { useActionState } from 'react';
 import FormButton from '../form-button';
 
-export default function PostCreateForm({ slug }) {
+export default function PostCreateForm({ slug }: any) {
   const [formState, action, pending] = useActionState(actions.createPost.bind(null, slug), { errors: {} } as any);
 
   return (
